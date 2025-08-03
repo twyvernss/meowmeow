@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False").lower == "True"
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 
 # Application definition
@@ -86,7 +86,7 @@ DATABASES = {
 }
 databse_url = os.environ.get("DATABASE_URL")
 
-DATABASES['deafault'] = dj_database_url.parse(databse_url)
+DATABASES['default'] = dj_database_url.parse(databse_url)
 
 # postgresql://smc_screeeners_dbs_user:C17sOP8TaZ4wVOzMS7vqxQek1xeK6lrN@dpg-d27hfqu3jp1c73f950q0-a.oregon-postgres.render.com/smc_screeeners_dbs
 
@@ -138,4 +138,5 @@ LOGOUT_REDIRECT_URL = '/login/'  # After logout
 
 SESSION_ENGINE = 'user_sessions.backends.db'
 SESSION_COOKIE_AGE = 1209600  # 2 weeks (can be shorter)
+
 
